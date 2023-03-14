@@ -3,7 +3,7 @@
 export const USER_LOGIN = 'USER_LOGIN';
 export const CURRENCIES = 'CURRENCIES';
 export const EXPENSES = 'EXPENSES';
-export const ENDPOINT_API = 'https://economia.awesomeapi.com.br/json/all';
+export const API = 'https://economia.awesomeapi.com.br/json/all';
 
 export function userLogin(payload) {
   return {
@@ -12,17 +12,16 @@ export function userLogin(payload) {
   };
 }
 
-export const walletInfo = (currencyData) => ({
+export const walletInfo = (currencyInfo) => ({
   type: CURRENCIES,
-  payload: currencyData,
+  payload: currencyInfo,
 });
 
 export const fetchCurrencies = () => async (dispatch) => {
-  const response = await fetch(ENDPOINT_API);
+  const response = await fetch(API);
   const data = await response.json();
-
   const dataKeys = Object.keys(data);
-  const currencies = dataKeys.filter((item) => item !== 'USDT');
+  const currencies = dataKeys.filter((element) => element !== 'USDT');
 
   dispatch(walletInfo(currencies));
 };
