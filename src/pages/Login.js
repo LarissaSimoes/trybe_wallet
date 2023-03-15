@@ -28,31 +28,34 @@ class Login extends React.Component {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     const passwordLength = 6;
     return (
-      <form
-        onSubmit={ this.handleSubmit }
-      >
-        <Input
-          label="E-mail: "
-          type="email"
-          onChange={ this.handleChange }
-          value={ email }
-          name="email"
-          dataTestId="email-input"
-        />
-        <Input
-          label="Senha: "
-          type="password"
-          onChange={ this.handleChange }
-          value={ password }
-          name="password"
-          dataTestId="password-input"
-        />
-        <Button
-          type="submit"
-          label="Entrar"
-          disabled={ !(regex.test(email) && password.length >= passwordLength) }
-        />
-      </form>
+      <div>
+        <h3>Login</h3>
+        <form
+          onSubmit={ this.handleSubmit }
+        >
+          <Input
+            label="E-mail: "
+            type="email"
+            onChange={ this.handleChange }
+            value={ email }
+            name="email"
+            dataTestId="email-input"
+          />
+          <Input
+            label="Senha: "
+            type="password"
+            onChange={ this.handleChange }
+            value={ password }
+            name="password"
+            dataTestId="password-input"
+          />
+          <Button
+            type="submit"
+            label="Entrar"
+            disabled={ !(regex.test(email) && password.length >= passwordLength) }
+          />
+        </form>
+      </div>
     );
   }
 }
