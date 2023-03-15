@@ -43,9 +43,9 @@ class WalletForm extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const rates = await getCurrencies();
     const { dispatch, expenses } = this.props;
     const stateInfo = this.state;
+    const rates = await getCurrencies();
     const expense = expenses[expenses.length - 1];
     const expenseId = expense ? expense.id + 1 : 0;
     dispatch(addExpenseAction({
