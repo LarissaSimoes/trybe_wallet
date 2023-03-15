@@ -1,8 +1,6 @@
-// import getCurrencies from '../../services/currenciesAPI';
-
 export const USER_LOGIN = 'USER_LOGIN';
 export const CURRENCIES = 'CURRENCIES';
-export const EXPENSES = 'EXPENSES';
+export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const API = 'https://economia.awesomeapi.com.br/json/all';
 
 export function userLogin(payload) {
@@ -15,6 +13,11 @@ export function userLogin(payload) {
 export const walletInfo = (currencyInfo) => ({
   type: CURRENCIES,
   payload: currencyInfo,
+});
+
+export const addExpenseAction = (expense) => ({
+  type: ADD_EXPENSE,
+  payload: expense,
 });
 
 export const fetchCurrencies = () => async (dispatch) => {

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCurrencies } from '../redux/actions';
+import { fetchCurrencies, addExpenseAction } from '../redux/actions';
+import getCurrencies from '../services/currenciesAPI';
 import Select from './Select';
 import Button from './Button';
 import Input from './Input';
+
+const Alimento = 'Alimentação';
 
 const METHOD_LIST = [
   'Dinheiro',
@@ -13,7 +16,7 @@ const METHOD_LIST = [
 ];
 
 const TAG_LIST = [
-  'Alimentação',
+  Alimento,
   'Lazer',
   'Trabalho',
   'Transporte',
@@ -26,7 +29,7 @@ class WalletForm extends Component {
     description: '',
     currency: 'USD',
     method: 'Dinheiro',
-    tag: 'Alimentação',
+    tag: Alimento,
   };
 
   componentDidMount() {
@@ -38,20 +41,32 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const { dispatch } = this.props;
-
-  //   dispatch(userLogin(this.state));
-  // };
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const rates = await getCurrencies();
+    const { dispatch, expenses } = this.props;
+    const stateInfo = this.state;
+    const expense = expenses[expenses.length - 1];
+    const expenseId = expense ? expense.id + 1 : 0;
+    dispatch(addExpenseAction({
+      id: expenseId,
+      ...stateInfo,
+      exchangeRates: rates,
+    }));
+    this.setState({
+      value: '',
+      description: '',
+    });
+  };
 
   render() {
     const { value, description, currency, method, tag } = this.state;
     const { currenciesData } = this.props;
 
     return (
-      <form>
-        <h1>Trybe Wallet</h1>
+      <form
+        onSubmit={ this.handleSubmit }
+      >
         <Input
           label="Valor "
           type="number"
@@ -107,10 +122,12 @@ class WalletForm extends Component {
 WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
   currenciesData: PropTypes.instanceOf(Array).isRequired,
+  expenses: PropTypes.instanceOf(Array).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currenciesData: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 export default connect(mapStateToProps)(WalletForm);
