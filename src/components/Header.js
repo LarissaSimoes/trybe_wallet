@@ -10,9 +10,9 @@ class Header extends Component {
         <h1>Trybe Wallet</h1>
         <div data-testid="total-field">
           {expenses.reduce((acc, curr) => {
-            const currentValue = Number(curr.currentValue)
+            const value = Number(curr.value)
             * Number(curr.exchangeRates[curr.currency].ask);
-            return acc + currentValue;
+            return acc + value;
           }, 0).toFixed(2)}
         </div>
         <div data-testid="header-currency-field">BRL</div>
