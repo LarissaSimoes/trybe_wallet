@@ -6,41 +6,15 @@ class Table extends Component {
       <div>
         <table>
           <caption>Tabela</caption>
-          <tr>
-            <th>Descrição</th>
-          </tr>
-          <tr>
-            <th>Tag</th>
-            {/* <td>teste</td> */}
-          </tr>
-          <tr>
-            <th>Método de pagamento</th>
-            {/* <td>teste</td> */}
-          </tr>
-          <tr>
-            <th>Valor</th>
-            {/* <td>teste</td> */}
-          </tr>
-          <tr>
-            <th>Moeda</th>
-            {/* <td>teste</td> */}
-          </tr>
-          <tr>
-            <th>Câmbio utilizado</th>
-            {/* <td>teste</td> */}
-          </tr>
-          <tr>
-            <th>Valor convertido</th>
-            {/* <td>teste</td> */}
-          </tr>
-          <tr>
-            <th>Moeda de conversão</th>
-            {/* <td>teste</td> */}
-          </tr>
-          <tr>
-            <th>Editar/Excluir</th>
-            {/* <td>teste</td> */}
-          </tr>
+          <th>Descrição</th>
+          <th>Tag</th>
+          <th>Método de pagamento</th>
+          <th>Valor</th>
+          <th>Moeda</th>
+          <th>Câmbio utilizado</th>
+          <th>Valor convertido</th>
+          <th>Moeda de conversão</th>
+          <th>Editar/Excluir</th>
         </table>
       </div>
     );
